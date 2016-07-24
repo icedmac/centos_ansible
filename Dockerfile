@@ -5,7 +5,7 @@
  
  RUN yum clean all && \
      yum -y install epel-release && \
-     yum -y install PyYAML python-jinja2 python-httplib2 python-paramiko python-setuptools git python-pip python-six
+     yum -y install --nogpgcheck PyYAML python-jinja2 python-httplib2 python-paramiko python-setuptools git python-pip python-six
 RUN mkdir /etc/ansible/
 RUN echo 'localhost' > /etc/ansible/hosts
 
