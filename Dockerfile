@@ -23,5 +23,4 @@ ENV PYTHONPATH /opt/ansible/lib
 ENV ANSIBLE_LIBRARY /opt/ansible/library
 
 # Keep ENV in external ssh session
-CMD env | grep _ >> /etc/environment && /usr/local/bin/run
-CMD ["/usr/sbin/sshd", "-D"]
+CMD env | grep _ >> /etc/environment && /usr/local/bin/run && /usr/sbin/sshd -D
