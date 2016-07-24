@@ -22,5 +22,5 @@ ENV PATH /opt/ansible/bin:/bin:/usr/bin:/sbin:/usr/sbin
 ENV PYTHONPATH /opt/ansible/lib
 ENV ANSIBLE_LIBRARY /opt/ansible/library
 
-# Keep ENV in external ssh session
-CMD env | grep _ >> /etc/environment && /usr/local/bin/run && /usr/sbin/sshd -D
+COPY supervisord.conf /etc/supervisord.d/supervisord.ini
+CMD ["/usr/bin/supervisord"]
