@@ -18,9 +18,12 @@ RUN git checkout -b v1.9.2-1 v1.9.2-1
 RUN git submodule update --init --recursive
 
 # Set the environment
-ENV PATH /opt/ansible/bin:/bin:/usr/bin:/sbin:/usr/sbin
-ENV PYTHONPATH /opt/ansible/lib
-ENV ANSIBLE_LIBRARY /opt/ansible/library
+RUN echo '#!/bin/bash' >> /etc/profile.d/ansible.sh && \
+	echo 'export PATH=/opt/ansible/bin:/bin:/usr/bin:/sbin:/usr/sbin' >> /etc/profile.d/ansible.sh && \
+    echo 'export PYTHONPATH=/opt/ansible/lib' >> /etc/profile.d/ansible.sh && \
+    echo 'export ANSIBLE_LIBRARY=/opt/ansible/library' >> /etc/profile.d/ansible.sh && \
+    chmod +x /etc/profile.d/ansible.sh
+
 
 COPY supervisord.conf /etc/supervisord.d/supervisord.ini
 CMD ["/usr/bin/supervisord"]
